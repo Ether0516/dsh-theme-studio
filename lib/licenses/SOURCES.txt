@@ -1,0 +1,12 @@
+JetBrains Mono 2.304:
+https://github.com/JetBrains/JetBrainsMono/tree/v2.304/fonts/webfonts
+
+JetBrains Mono Nerd Font, Nerd Fonts 3.3.0:
+https://github.com/ryanoasis/nerd-fonts/tree/v3.3.0/patched-fonts/JetBrainsMono/Ligatures
+Original font copyright and SIL Open Font License are preserved in the font
+name records. See JetBrainsMono-OFL.txt for the full license.
+Nerd Fonts patches include symbols from the collections documented at:
+https://github.com/ryanoasis/nerd-fonts/blob/v3.3.0/license-audit.md
+
+The Nerd Font TTFs were losslessly compressed to WOFF2 with FontTools.
+Microsoft YaHei uses the Windows-provided system font, not a redistributed copy.
