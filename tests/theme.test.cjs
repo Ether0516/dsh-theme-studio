@@ -18,10 +18,10 @@ function runtimeClass() {
 function fixture(value={theme:'catppuccin-mocha',polish:true}) {
   const bus = new Map();
   const on = (event,listener) => { if(!bus.has(event))bus.set(event,new Set());bus.get(event).add(listener);return()=>bus.get(event).delete(listener); };
-  const ctx = {on,emit:(event,payload)=>{for(const l of [...(bus.get(event)||[])])l(payload);},effect:fn=>fn()};
+  const ctx = {on,emit:(event,payload)=>{for(const l of [...(bus.get(event)||[])])l(payload);},effect:fn=>fn(),inject:()=>()=>{}};
   const native = {value:{preference:'dark',fontSize:14}};
   const nativeListeners = new Set();
-  const nativeForm = {getSnapshot:()=>native,subscribe:l=>{nativeListeners.add(l);return()=>nativeListeners.delete(l);},set:()=>{}};
+  const nativeForm = {getSnapshot:()=>({...native,value:{textFontFamily:'',codeFontFamily:'',terminalFontFamily:'',codeFontSize:11,terminalFontSize:13,...native.value}}),subscribe:l=>{nativeListeners.add(l);return()=>nativeListeners.delete(l);},set:async(key,value)=>{native.value={...native.value,[key]:value};}};
   ctx.theme = new (runtimeClass())(ctx,nativeForm);
   const formListeners=new Set();
   const form = {getSnapshot:()=>({value,writable:true,status:'ready'}),subscribe:l=>{formListeners.add(l);return()=>formListeners.delete(l);},mutate:async ops=>{value={...value};for(const op of ops)value[op.path[0]]=op.value;for(const l of formListeners)l();return true;}};
@@ -42,7 +42,7 @@ test('persisted selection loads, survives font-size adoption and restores the bu
   const f=fixture({theme:'dracula',polish:true});
   assert.equal(f.ctx.theme.getTheme().active.tokens['--dsw-alias-bg-base'],'#282a36');
   f.native.value={preference:'dark',fontSize:17};for(const l of f.nativeListeners)l();await settle();
-  assert.equal(f.ctx.theme.getTheme().active.id,'theme-studio/dracula');assert.equal(f.ctx.theme.getTheme().fontSize,17);
+  assert.equal(f.ctx.theme.getTheme().active.id,'theme-studio/dracula');assert.equal(f.ctx.theme.getTheme().fontSizes?.text ?? f.ctx.theme.getTheme().fontSize,17);
   f.controller.dispose();await settle();assert.equal(f.ctx.theme.getTheme().preference,'dark');assert.equal(f.ctx.theme.getTheme().active.tokens['--dsw-alias-bg-base'],undefined);
   assert.equal(f.ctx.theme.getTheme().themes.length,2);
 });

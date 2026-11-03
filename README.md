@@ -2,7 +2,7 @@
 
 给 DeepSeek Harness 桌面版增加主题和字体选择。在 **设置 → 外观** 中切换配色，让整个应用使用你喜欢的风格。
 
-**版本：0.1.0 · 已验证：Dsh 0.2.0-rc.2 / Windows x64 · MIT**
+**版本：0.1.1 · 已验证：Dsh 0.2.1-rc.5 / Windows x64 · MIT**
 
 ## 可以做什么
 
@@ -38,10 +38,10 @@
 
 先启动过一次 Dsh 桌面版，让它完成初始化，再通过 **应用 → 退出** 完全退出。
 
-下载 `dsh-theme-studio-0.1.0.tgz` 后，在终端运行以下命令。把示例路径换成安装包的实际位置：
+下载 `dsh-theme-studio-0.1.1.tgz` 后，在终端运行以下命令。把示例路径换成安装包的实际位置：
 
 ```text
-dsh plugin --profile desktop add "C:\Downloads\dsh-theme-studio-0.1.0.tgz" --offline
+dsh plugin --profile desktop add "C:\Downloads\dsh-theme-studio-0.1.1.tgz" --offline
 ```
 
 重新打开 Dsh，在 **设置 → 外观** 中选择主题和字体。
@@ -101,7 +101,7 @@ npm test
 
 `src` 是源码，`lib` 是随包提供的构建产物，`assets/fonts` 保存字体和许可证。通过官方主题服务、配置表单和界面插槽扩展应用，不修改 Dsh 安装包。
 
-目前只验证了 Dsh 0.2.0-rc.2 / Windows x64。Dsh 升级后可能需要适配。
+兼容范围与已验证版本见下方兼容性说明。
 
 ## 项目文档
 
@@ -120,3 +120,7 @@ npm test
 - [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 
 本项目是社区插件。Codex Graphite 是本项目制作的近似配色。
+
+## 兼容性
+
+支持 Dsh `0.2.0-rc.2` 及 `0.2.1` 系列（从 rc.2 起）。已验证 Windows x64 上的 `0.2.1-rc.2`、`0.2.1-rc.5`。同一系列的小更新不会仅因版本号变化被停用；升级到 `0.2.2` 及以上仍需重新验证接口。
